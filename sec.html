@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Summary</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+      <h1>Expense Summary</h1>
+      <p id="total">Total: $0.00</p>
+    
+        <div class="currency-converter">
+            <label for="currency">Convert Total To:</label>
+            <select id="currency" onchange="convertCurrency()">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="INR">INR</option>
+                <option value="KWD">KWD</option>
+            </select>    
+            <P id="convertedTotal"></P>
+        </div>
+    <button onclick="goBack()">Back to Tracker</button>
+    </div>
+    <script>
+      const conversionRates = {
+    USD: 0.012,
+    EUR: 0.011,
+    INR: 1,
+    KWD: 0.0037,
+
+};
+
+const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+const convertAmount = parseFloat(localStorage.getItem("convertAmount"));
+const baseAmount = !isNaN(convertAmount)
+ ? convertAmount
+ : expenses.reduce((sum, exp) => sum + exp.amount, 0);
+
+ document.getElementById("total").textContent = `Total: ${baseAmount.toFixed(2)}`;
+
+ function convertCurrency() {
+    const currency = document.getElementById("currency").value;
+    const rate = conversionRates[currency];
+    const converted = baseAmount * rate;
+
+    document.getElementById("convertedTotal").textContent =
+       `converted Total: ${converted.toFixed(2)} ${currency}`;
+
+ }
+ function goBack() {
+    window.location.href = "index.html";
+ }
+    </script>
+    <script src="sry-script.js"></script>
+</body>
+</html>

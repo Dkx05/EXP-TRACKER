@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Expense Tracker</title>
+            <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+        <div class="container">    
+            <h2>Expense Tracker</h2>
+            <input type="text" id="desc" placeholder="Expense Description">
+            <input type="number" id="amount" placeholder="Amount">
+            <button onclick ="addExpense()">Add Expense</button>
+            <button class="export-btn" onclick="exportToExcel()"> EXPORT TO EXCEL</button>  
+            <input type="number" id="amountToConvert" placeholder="Enter amount to convert" />
+            <button onclick="goToCurrencyConverter()"> Convert Currency</button>
+            <ul id="expenseList"></ul>
+            <div class="total">Total: $<span id="totalAmount">0</span></div>
+            </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+            <script src="script.js"></script>
+    </body>
+        </html>    
+    
+    
